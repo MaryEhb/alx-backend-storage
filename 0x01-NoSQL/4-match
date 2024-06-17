@@ -1,0 +1,2 @@
+// 4. All matches
+db.scholl.find({"name": "Holberton school"})
