@@ -12,5 +12,9 @@ if __name__ == '__main__':
     print('\tmethod POST: {}'.format(c.count_documents({'method': 'POST'})))
     print('\tmethod PUT: {}'.format(c.count_documents({'method': 'PUT'})))
     print('\tmethod PATCH: {}'.format(c.count_documents({'method': 'PATCH'})))
+
     delete = c.count_documents({'method': 'DELETE'})
     print('\tmethod DELETE: {}'.format(delete))
+
+    get_status = c.count_documents({'method': 'GET', 'path': '/status'})
+    print('{} status check'.format(get_status))
