@@ -27,8 +27,6 @@ class Cache:
         This callable will be used to convert the data back to
         the desired format.'''
         val = self_redis.get(key)
-        if not val:
-            return
         if fn is Callable:
             return fn(val)
         return val
