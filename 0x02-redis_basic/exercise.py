@@ -26,8 +26,12 @@ class Cache:
         ''' take a key string argument and an optional Callable argument.
         This callable will be used to convert the data back to
         the desired format.'''
-        val = self_redis.get(key)
-        if fn is Callable:
+        val = self._redis.get(key)
+        if fn is str:
+            return self.get_str(val)
+        if fn is int:
+            return self.get_int(val)
+        if fn:
             return fn(val)
         return val
 
