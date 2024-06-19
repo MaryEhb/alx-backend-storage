@@ -39,7 +39,7 @@ class Cache:
 
     def get_str(self, val: bytes) -> str:
         '''get str from bytes'''
-        return str(val)
+        return val.decode('utf-8')
 
     def get_int(self, val: bytes) -> int:
         '''get int from bytes'''
