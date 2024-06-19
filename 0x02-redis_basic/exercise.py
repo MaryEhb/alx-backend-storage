@@ -29,10 +29,6 @@ class Cache:
         val = self_redis.get(key)
         if not val:
             return
-        if fn is str:
-            return self.get_str(val)
-        if fn is int:
-            return self.get_int(val)
         if fn is Callable:
             return fn(val)
         return val
