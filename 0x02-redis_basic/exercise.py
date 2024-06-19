@@ -36,7 +36,7 @@ class Cache:
         if fn is Callable:
             return fn(value)
         return value
-    
+
     def get_str(self, val: bytes) -> str:
         '''get str from bytes'''
         return str(val)
