@@ -12,7 +12,7 @@ class Cache:
         '''store an instance of the Redis client as a private variable
         named _redis and flush it'''
         self._redis = redis.Redis()
-        self._redis.flushdb()
+        self._redis.flushdb(True)
 
     def store(self, data: Union[str, int, bytes, float]) -> str:
         '''takes a data argument and returns a string. The method should
