@@ -16,6 +16,23 @@ def count_calls(method: Callable) -> Callable:
     return wrapper
 
 
+def call_history(method: Callable) -> Callable:
+    ''' '''
+    @wraps(method)
+    def wrapper(self: Any, *args) -> str:
+        ''' '''
+        self._redis.rpush(f'{method.__qualname__}:inputs', str(args))
+        output = method(self, *args)
+        self._redis.rpush(f'{method.__qualname__}:outputs', output)
+        return output
+    return wrapper
+
+
+def replay(fn: Callable) -> None:
+    ''' '''
+    pass
+
+
 class Cache:
     '''create redis store for caching'''
 
@@ -26,6 +43,7 @@ class Cache:
         self._redis.flushdb(True)
 
     @count_calls
+    @call_history
     def store(self, data: Union[str, int, bytes, float]) -> str:
         '''takes a data argument and returns a string. The method should
         generate a random key (e.g. using uuid), store the input data
