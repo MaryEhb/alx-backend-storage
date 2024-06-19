@@ -30,12 +30,12 @@ class Cache:
         if not val:
             return
         if fn is str:
-            return self.get_str(value)
+            return self.get_str(val)
         if fn is int:
-            return self.get_int(value)
+            return self.get_int(val)
         if fn is Callable:
-            return fn(value)
-        return value
+            return fn(val)
+        return val
 
     def get_str(self, val: bytes) -> str:
         '''get str from bytes'''
